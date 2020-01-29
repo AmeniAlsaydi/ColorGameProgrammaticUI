@@ -16,14 +16,12 @@ class ColorsView: UIView {
       stack.distribution = .fillEqually
       stack.alignment = .fill
       stack.spacing = 50
-      // stack.translatesAutoresizingMaskIntoConstraints = false
       return stack
     }()
     
     
     public lazy var colorImageView: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = updateDisplayColor()
         return image
     }()
     
@@ -71,20 +69,6 @@ class ColorsView: UIView {
     }
     
 }
-
-func updateDisplayColor() -> UIColor {
-    let randRed = CGFloat.random(in: 0...1)
-    let randGreen = CGFloat.random(in: 0...1)
-    let randBlue = CGFloat.random(in: 0...1)
-    
-    // let randomNumArr = [randRed, randGreen, randBlue]
-    // let highestValue = randomNumArr.max()
-    
-    
-    let myColor = UIColor(red: randRed, green: randGreen, blue: randBlue, alpha: 1)
-    return myColor
-}
-
 
 func buttonArray() -> [UIButton]{
     let redButton = UIButton()
