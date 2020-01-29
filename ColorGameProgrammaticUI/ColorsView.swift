@@ -10,6 +10,20 @@ import UIKit
 
 class ColorsView: UIView {
     
+    public lazy var scoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = "SCORE"
+        label.backgroundColor = .systemGray
+        return label
+    }()
+    
+    public lazy var highScoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = "HIGH SCORE"
+        label.backgroundColor = .systemGray
+        return label
+    }()
+    
    public lazy var colorButtonStack: UIStackView = {
       let stack = UIStackView(arrangedSubviews: buttonArray())
       stack.axis = .horizontal
@@ -38,6 +52,8 @@ class ColorsView: UIView {
     private func commonInit() {
         setupImageViewContraints()
         setupStackViewContraints()
+        setupScoreLabelContraints()
+        setupHighScoreLabelContraints()
     }
     
     private func setupImageViewContraints() {
@@ -66,6 +82,30 @@ class ColorsView: UIView {
             colorButtonStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             colorButtonStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             colorButtonStack.heightAnchor.constraint(equalToConstant: 80) ])
+    }
+    
+    private func setupScoreLabelContraints() {
+        addSubview(scoreLabel)
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            scoreLabel.topAnchor.constraint(equalTo: colorButtonStack.bottomAnchor, constant: 50),
+            scoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            scoreLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5)
+        ])
+    }
+    
+    private func setupHighScoreLabelContraints() {
+        addSubview(highScoreLabel)
+        highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            highScoreLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 25),
+            highScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            highScoreLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5)
+        ])
+        
+        
     }
     
 }

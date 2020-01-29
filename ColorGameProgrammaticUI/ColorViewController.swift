@@ -12,9 +12,17 @@ class ColorViewController: UIViewController {
 
     private let colorView = ColorsView()
     private var randomNumArr = [CGFloat]()
+    private var score = 0
+    private var highestScore = 0
     
     override func loadView() {
         view = colorView
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        // make buttons circle
+        
     }
     
     override func viewDidLoad() {
@@ -57,9 +65,12 @@ class ColorViewController: UIViewController {
     private func playAgain(alert: UIAlertAction!) {
         if alert.title == "No" {
         print("User doesnt want to play")
+            score = 0
+            // disable buttons ?
         } else {
             print("User wants to play")
             updateDisplayColor()
+            score = 0 // reset the score
         }
         
     }
@@ -70,17 +81,27 @@ class ColorViewController: UIViewController {
         
         let indexOfHighest = randomNumArr.firstIndex(of: highestValue)
         
+        // check high score:
+
+        if score > highestScore {
+            highestScore = score
+        }
+        
         if buttonTag == indexOfHighest {
-            print("correct keep going")
+            // print("correct keep going")
+            score += 1
+            colorView.scoreLabel.text = "Score: \(score)"
+            
+            // add to score
             
             updateDisplayColor()
         } else {
             print("nope you lose")
+            colorView.highScoreLabel.text = "Highest Score: \(highestScore)"
+            
             showAlert(title: "You Lose", message: "Would you like to play again?", completion: playAgain(alert:))
-        
+            
         }
-        
-        
     }
     
     @objc
@@ -91,3 +112,13 @@ class ColorViewController: UIViewController {
 
 }
 
+
+// Still TODO:
+
+/*
+ - display score
+ - keep track of highest score
+ - fix UI cuz its ugly
+ BONUS:
+ - had difficulty levels (maybe by having cgfloats that are in a smaller range?)
+ */
