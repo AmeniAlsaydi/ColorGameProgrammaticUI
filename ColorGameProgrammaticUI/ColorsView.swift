@@ -13,14 +13,12 @@ class ColorsView: UIView {
     public lazy var scoreLabel: UILabel = {
         let label = UILabel()
         label.text = "SCORE"
-        label.backgroundColor = .systemGray
         return label
     }()
     
     public lazy var highScoreLabel: UILabel = {
         let label = UILabel()
         label.text = "HIGH SCORE"
-        label.backgroundColor = .systemGray
         return label
     }()
     
@@ -114,14 +112,18 @@ func buttonArray() -> [UIButton]{
     let redButton = UIButton()
     redButton.backgroundColor = .red
     redButton.tag = 0
+    redButton.layer.cornerRadius = 30
     
     let greenButton = UIButton()
     greenButton.backgroundColor = .green
     greenButton.tag = 1
+    greenButton.layer.cornerRadius = 30
+    
     
     let blueButton = UIButton()
     blueButton.backgroundColor = .blue
     blueButton.tag = 2
+    blueButton.layer.cornerRadius = 30
     
     
     let buttonArray = [redButton, greenButton, blueButton]

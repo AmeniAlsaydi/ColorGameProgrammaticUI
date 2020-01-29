@@ -20,14 +20,14 @@ class ColorViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        
-        // make buttons circle
-        
+    
+        colorView.colorImageView.layer.cornerRadius = colorView.colorImageView.frame.width/2.4
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
+        view.backgroundColor = UIColor(named: "MyColor")
         configureNavBar()
         addTargets()
         updateDisplayColor() 
@@ -66,11 +66,11 @@ class ColorViewController: UIViewController {
         if alert.title == "No" {
         print("User doesnt want to play")
             score = 0
-            // disable buttons ?
+            colorView.scoreLabel.text = "Score: \(score)"
         } else {
             print("User wants to play")
+            colorView.scoreLabel.text = "Score: \(score)"
             updateDisplayColor()
-            score = 0 // reset the score
         }
         
     }
@@ -98,6 +98,8 @@ class ColorViewController: UIViewController {
         } else {
             print("nope you lose")
             colorView.highScoreLabel.text = "Highest Score: \(highestScore)"
+            score = 0 // reset the score
+
             
             showAlert(title: "You Lose", message: "Would you like to play again?", completion: playAgain(alert:))
             
