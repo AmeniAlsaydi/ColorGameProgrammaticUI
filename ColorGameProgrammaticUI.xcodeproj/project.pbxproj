@@ -13,6 +13,7 @@
 		B74DD3AA23E0D66700CDAC0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B74DD3A923E0D66700CDAC0D /* Assets.xcassets */; };
 		B74DD3AD23E0D66700CDAC0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B74DD3AB23E0D66700CDAC0D /* LaunchScreen.storyboard */; };
 		B74DD3B523E0D97B00CDAC0D /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DD3B423E0D97B00CDAC0D /* ColorsView.swift */; };
+		B74DD3B723E1B39600CDAC0D /* AlertExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DD3B623E1B39600CDAC0D /* AlertExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B74DD3AC23E0D66700CDAC0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B74DD3AE23E0D66700CDAC0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B74DD3B423E0D97B00CDAC0D /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
+		B74DD3B623E1B39600CDAC0D /* AlertExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				B74DD3A023E0D66500CDAC0D /* AppDelegate.swift */,
 				B74DD3A223E0D66500CDAC0D /* SceneDelegate.swift */,
+				B74DD3B623E1B39600CDAC0D /* AlertExt.swift */,
 				B74DD3A423E0D66500CDAC0D /* ColorViewController.swift */,
 				B74DD3B423E0D97B00CDAC0D /* ColorsView.swift */,
 				B74DD3A923E0D66700CDAC0D /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B74DD3B523E0D97B00CDAC0D /* ColorsView.swift in Sources */,
+				B74DD3B723E1B39600CDAC0D /* AlertExt.swift in Sources */,
 				B74DD3A523E0D66500CDAC0D /* ColorViewController.swift in Sources */,
 				B74DD3A123E0D66500CDAC0D /* AppDelegate.swift in Sources */,
 				B74DD3A323E0D66500CDAC0D /* SceneDelegate.swift in Sources */,

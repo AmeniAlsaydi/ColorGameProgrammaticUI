@@ -53,17 +53,31 @@ class ColorViewController: UIViewController {
         let myColor = UIColor(red: randRed, green: randGreen, blue: randBlue, alpha: 1)
         colorView.colorImageView.backgroundColor = myColor
     }
+
+    private func playAgain(alert: UIAlertAction!) {
+        if alert.title == "No" {
+        print("User doesnt want to play")
+        } else {
+            print("User wants to play")
+            updateDisplayColor()
+        }
+        
+    }
     
     
-    func checkWin(buttonTag: Int) {
+    private func checkWin(buttonTag: Int) {
         guard let highestValue = randomNumArr.max() else { return }// at this point i have the highest
         
         let indexOfHighest = randomNumArr.firstIndex(of: highestValue)
         
         if buttonTag == indexOfHighest {
-            print("good guess")
+            print("correct keep going")
+            
+            updateDisplayColor()
         } else {
             print("nope you lose")
+            showAlert(title: "You Lose", message: "Would you like to play again?", completion: playAgain(alert:))
+        
         }
         
         
@@ -71,13 +85,8 @@ class ColorViewController: UIViewController {
     
     @objc
     private func colorGuessed(_ sender: UIButton) {
-        print("tag pressed: \(sender.tag)")
-        
-        // here is where i should do the checking
-        
         checkWin(buttonTag: sender.tag)
-        // if its right display new color:
-        updateDisplayColor()
+        
     }
 
 }
