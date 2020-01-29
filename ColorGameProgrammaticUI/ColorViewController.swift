@@ -20,6 +20,22 @@ class ColorViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemPink
         configureNavBar()
+        addTargets()
+        
+        
+        
+        
+    }
+    
+    private func addTargets() {
+        
+        guard let redButton = colorView.colorButtonStack.subviews[0] as? UIButton, let greenButton = colorView.colorButtonStack.subviews[1] as? UIButton, let blueButton = colorView.colorButtonStack.subviews[2] as? UIButton else {
+            fatalError("missing button")
+        }
+          let buttons = [redButton, greenButton, blueButton]
+        
+        let _ = buttons.map { $0.addTarget(self, action: #selector(colorGuessed(_:)), for: .touchUpInside) }
+        
         
     }
     
@@ -29,7 +45,11 @@ class ColorViewController: UIViewController {
       
         navigationItem.title = "Bomb Color Game"
     }
-
+    
+    @objc
+    private func colorGuessed(_ sender: UIButton) {
+        print("tag pressed: \(sender.tag)")
+    }
 
 }
 
