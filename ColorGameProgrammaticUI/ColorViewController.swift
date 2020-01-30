@@ -25,9 +25,7 @@ class ColorViewController: UIViewController {
     override func viewDidLayoutSubviews() {
     
         colorView.colorImageView.layer.cornerRadius = colorView.colorImageView.frame.width/13
-        colorView.playButton.layer.cornerRadius = colorView.playButton.frame.width/10
-        
-    
+        colorView.playButton.layer.cornerRadius = colorView.playButton.frame.width/13
     }
     
     override func viewDidLoad() {
@@ -37,6 +35,7 @@ class ColorViewController: UIViewController {
         addTargets()
         updateDisplayColor()
         colorView.playButton.isEnabled = false
+        colorView.playButton.isHidden = true
     }
     
 
@@ -48,6 +47,9 @@ class ColorViewController: UIViewController {
           buttons = [redButton, greenButton, blueButton]
         
         let _ = buttons.map { $0.addTarget(self, action: #selector(colorGuessed(_:)), for: .touchUpInside) }
+        
+        colorView.playButton.addTarget(self, action: #selector(reset(_sender:)), for: .touchUpInside)
+        
     }
     
     private func configureNavBar() {
@@ -70,15 +72,16 @@ class ColorViewController: UIViewController {
 
     private func playAgain(alert: UIAlertAction!) {
         if alert.title == "No" {
-       
             score = 0
-            colorView.scoreLabel.text = "Score: \(score)"
-            
+            colorView.scoreLabel.text = ""
+            colorView.colorImageView.image = UIImage(named: "rainbow.png")
+            colorView.playButton.isHidden = false
+
             colorView.playButton.isEnabled = true
             let _ = buttons.map { $0.isEnabled = false }
         } else {
         
-            colorView.scoreLabel.text = "Score: \(score)"
+            colorView.scoreLabel.text = " ➡️ Score: \(score)"
             updateDisplayColor()
         }
         
@@ -96,15 +99,15 @@ class ColorViewController: UIViewController {
         
         if buttonTag == indexOfHighest {
             score += 1
-            colorView.scoreLabel.text = "Score: \(score)"
+            colorView.scoreLabel.text = " ➡️ Your Score: \(score)"
             
             updateDisplayColor()
         } else {
-            colorView.highScoreLabel.text = "Highest Score: \(highestScore)"
+            colorView.highScoreLabel.text = " ↗️ Highest Score: \(highestScore)"
             score = 0 // reset the score
 
             
-            showAlert(title: "You Lose", message: "Would you like to play again?", completion: playAgain(alert:))
+            showAlert(title: "😭 👎🏼 You Lose 😭 👎🏼", message: "Would you like to play again?", completion: playAgain(alert:))
             
         }
     }
@@ -113,6 +116,21 @@ class ColorViewController: UIViewController {
     private func colorGuessed(_ sender: UIButton) {
         checkWin(buttonTag: sender.tag)
         
+    }
+    
+    @objc
+    private func reset(_sender: UIButton) {
+        // reenable buttons
+        print("in here")
+        let _ = buttons.map { $0.isEnabled = true }
+        
+        // produce new color
+        updateDisplayColor()
+        
+        // disable the play again button
+        colorView.colorImageView.image = nil
+        colorView.playButton.isEnabled = false
+        colorView.playButton.isHidden = true
     }
 
 }
@@ -124,7 +142,8 @@ class ColorViewController: UIViewController {
  - display score ✅
  - keep track of highest score ✅
  - fix UI cuz its ugly ✅
- - add play again button
+ - add play again button ✅
+ 
  BONUS:
- - had difficulty levels (maybe by having cgfloats that are in a smaller range?)
+ - add difficulty levels (maybe by having cgfloats that are in a smaller range?)
  */

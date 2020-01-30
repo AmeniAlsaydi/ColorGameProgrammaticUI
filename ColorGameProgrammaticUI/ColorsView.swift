@@ -12,8 +12,9 @@ class ColorsView: UIView {
     
     public lazy var playButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .green
-        button.setTitle("Play Again", for: .normal)
+        button.backgroundColor = UIColor(named: "MyOtherColor")
+        button.setTitle("🔴 🟢 🔵 PLAY AGAIN 🔴 🟢 🔵", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(.black, for: .normal)
     
         return button
@@ -43,6 +44,8 @@ class ColorsView: UIView {
     
     public lazy var colorImageView: UIImageView = {
         let image = UIImageView()
+        image.layer.borderWidth = 1.5
+        image.layer.borderColor = UIColor.black.cgColor
         return image
     }()
     
@@ -120,7 +123,8 @@ class ColorsView: UIView {
         
         NSLayoutConstraint.activate([
             playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70),
-            playButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4),
+            playButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
+            playButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.05),
             playButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
