@@ -15,13 +15,18 @@ class ColorViewController: UIViewController {
     private var score = 0
     private var highestScore = 0
     
+    var buttons = [UIButton]() // use this to disable buttons
+    
+    
     override func loadView() {
         view = colorView
     }
     
     override func viewDidLayoutSubviews() {
     
-        colorView.colorImageView.layer.cornerRadius = colorView.colorImageView.frame.width/2.4
+        colorView.colorImageView.layer.cornerRadius = colorView.colorImageView.frame.width/13
+        colorView.playButton.layer.cornerRadius = colorView.playButton.frame.width/10
+        
     
     }
     
@@ -30,7 +35,8 @@ class ColorViewController: UIViewController {
         view.backgroundColor = UIColor(named: "MyColor")
         configureNavBar()
         addTargets()
-        updateDisplayColor() 
+        updateDisplayColor()
+        colorView.playButton.isEnabled = false
     }
     
 
@@ -39,7 +45,7 @@ class ColorViewController: UIViewController {
         guard let redButton = colorView.colorButtonStack.subviews[0] as? UIButton, let greenButton = colorView.colorButtonStack.subviews[1] as? UIButton, let blueButton = colorView.colorButtonStack.subviews[2] as? UIButton else {
             fatalError("missing button")
         }
-          let buttons = [redButton, greenButton, blueButton]
+          buttons = [redButton, greenButton, blueButton]
         
         let _ = buttons.map { $0.addTarget(self, action: #selector(colorGuessed(_:)), for: .touchUpInside) }
     }
@@ -64,11 +70,14 @@ class ColorViewController: UIViewController {
 
     private func playAgain(alert: UIAlertAction!) {
         if alert.title == "No" {
-        print("User doesnt want to play")
+       
             score = 0
             colorView.scoreLabel.text = "Score: \(score)"
+            
+            colorView.playButton.isEnabled = true
+            let _ = buttons.map { $0.isEnabled = false }
         } else {
-            print("User wants to play")
+        
             colorView.scoreLabel.text = "Score: \(score)"
             updateDisplayColor()
         }
@@ -77,26 +86,20 @@ class ColorViewController: UIViewController {
     
     
     private func checkWin(buttonTag: Int) {
-        guard let highestValue = randomNumArr.max() else { return }// at this point i have the highest
+        guard let highestValue = randomNumArr.max() else { return }
         
         let indexOfHighest = randomNumArr.firstIndex(of: highestValue)
         
-        // check high score:
-
         if score > highestScore {
             highestScore = score
         }
         
         if buttonTag == indexOfHighest {
-            // print("correct keep going")
             score += 1
             colorView.scoreLabel.text = "Score: \(score)"
             
-            // add to score
-            
             updateDisplayColor()
         } else {
-            print("nope you lose")
             colorView.highScoreLabel.text = "Highest Score: \(highestScore)"
             score = 0 // reset the score
 
@@ -118,9 +121,10 @@ class ColorViewController: UIViewController {
 // Still TODO:
 
 /*
- - display score
- - keep track of highest score
- - fix UI cuz its ugly
+ - display score ✅
+ - keep track of highest score ✅
+ - fix UI cuz its ugly ✅
+ - add play again button
  BONUS:
  - had difficulty levels (maybe by having cgfloats that are in a smaller range?)
  */

@@ -10,6 +10,15 @@ import UIKit
 
 class ColorsView: UIView {
     
+    public lazy var playButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .green
+        button.setTitle("Play Again", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+    
+        return button
+    }()
+    
     public lazy var scoreLabel: UILabel = {
         let label = UILabel()
         label.text = "SCORE"
@@ -52,6 +61,7 @@ class ColorsView: UIView {
         setupStackViewContraints()
         setupScoreLabelContraints()
         setupHighScoreLabelContraints()
+        setupPlayButtonConstraints()
     }
     
     private func setupImageViewContraints() {
@@ -102,8 +112,17 @@ class ColorsView: UIView {
             highScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             highScoreLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5)
         ])
+    }
+    
+    private func setupPlayButtonConstraints() {
+        addSubview(playButton)
+        playButton.translatesAutoresizingMaskIntoConstraints = false
         
-        
+        NSLayoutConstraint.activate([
+            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70),
+            playButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4),
+            playButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
     }
     
 }
