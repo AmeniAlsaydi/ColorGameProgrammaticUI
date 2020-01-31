@@ -44,6 +44,7 @@ class ColorsView: UIView {
     
     public lazy var colorImageView: UIImageView = {
         let image = UIImageView()
+        image.clipsToBounds = true
         image.layer.borderWidth = 1.5
         image.layer.borderColor = UIColor.black.cgColor
         return image
